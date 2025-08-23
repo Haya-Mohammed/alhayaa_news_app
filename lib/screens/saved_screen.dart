@@ -5,6 +5,7 @@ class SavedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("Rebuild SavedScreen");
     return const Center(
       child: Text('No Saved Articles yet!'),
     );

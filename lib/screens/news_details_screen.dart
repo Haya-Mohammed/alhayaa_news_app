@@ -1,4 +1,5 @@
 import 'package:alhayaa_news_app/article_model.dart';
+import 'package:alhayaa_news_app/shared/constants/app_colors.dart';
 import 'package:alhayaa_news_app/shared/constants/app_strings.dart';
 import 'package:alhayaa_news_app/shared/constants/image_strings.dart';
 import 'package:alhayaa_news_app/shared/theme/app_text_styles.dart';
@@ -20,6 +21,7 @@ class NewsDetailesScreen extends StatelessWidget {
           AppStrings.detailsPageTitle,
           style: AppTextStyles.pageTitle,
         ),
+        backgroundColor: AppColors.background,
         centerTitle: true,
         leading: AppIconContainer(
           icon: Icons.arrow_back_ios,

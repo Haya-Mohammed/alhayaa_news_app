@@ -6,6 +6,10 @@ abstract class AppTheme {
     backgroundColor: AppColors.background,
     scaffoldBackgroundColor: AppColors.background,
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.background,
+      centerTitle: true,
+    ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: AppColors.primary,
       unselectedItemColor: AppColors.secondary,

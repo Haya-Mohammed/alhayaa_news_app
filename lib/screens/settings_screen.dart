@@ -5,6 +5,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("Rebuild SettingsScreen");
     return const Center(
       child: Text('This is settings Screen'),
     );

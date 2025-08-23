@@ -9,6 +9,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   int selectedIndex = 0;
   void changeIndex(int newIndex) {
+    if (selectedIndex == newIndex) return;
     selectedIndex = newIndex;
     emit(NavigationChangedState());
   }

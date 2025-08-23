@@ -13,14 +13,11 @@ class NewsCubit extends Cubit<NewsState> {
   List<Article> articles = [];
 
   List<Article> getArticlesList(Map<String, dynamic> data) {
-    for (var article in data['items']) {
-      articles.add(Article.fromJson(article));
-    }
+    articles = (data['items'] as List)
+        .map((article) => Article.fromJson(article))
+        .toList();
     return articles;
   }
-
-  List<String> categories = [];
-  int selectedCategory = 0;
 
   void getNews() async {
     emit(NewsLoading());
@@ -40,4 +37,13 @@ class NewsCubit extends Cubit<NewsState> {
       emit(NewsFailure(error.toString()));
     }
   }
+
+  List<String> categories = [];
+  int selectedCategory = 0;
+// Todo
+//   void changeCategory(int index) {
+//     selectedCategory = index;
+//     emit(CategoryChanged());
+//     getNewsByCategory(categories[index]);
+//   }
 }
