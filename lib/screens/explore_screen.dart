@@ -1,0 +1,13 @@
+import 'package:flutter/material.dart';
+
+class ExploreScreen extends StatelessWidget {
+  const ExploreScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    debugPrint("Rebuild ExploreScreen");
+    return const Center(
+      child: Text('This is Explore Screen'),
+    );
+  }
+}
