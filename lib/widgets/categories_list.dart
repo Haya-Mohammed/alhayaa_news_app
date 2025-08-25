@@ -28,12 +28,12 @@ class _CategoriesListState extends State<CategoriesList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // width: double.infinity,
       height: 50,
+      width: double.infinity,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: 4,
+        itemCount: categories.length,
         itemBuilder: (context, index) => CategoryListItem(
           name: categories[index],
         ),

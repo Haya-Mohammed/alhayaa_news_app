@@ -23,7 +23,7 @@ class GridNewsCard extends StatelessWidget {
         );
       },
       child: Card(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -53,10 +53,10 @@ class GridNewsCard extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.left,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
 
@@ -67,10 +67,7 @@ class GridNewsCard extends StatelessWidget {
                     article.description ?? '',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.black87,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
                 Padding(
@@ -79,8 +76,7 @@ class GridNewsCard extends StatelessWidget {
                     DateFormat('MM/dd/yyyy, hh:mm a')
                         .format(article.publishedAt!)
                         .toString(),
-                    style: const TextStyle(
-                        fontSize: 10, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.labelSmall,
                     maxLines: 2,
                     textAlign: TextAlign.left,
                     overflow: TextOverflow.ellipsis,

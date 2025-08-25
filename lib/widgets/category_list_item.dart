@@ -1,5 +1,4 @@
 import 'package:alhayaa_news_app/shared/constants/app_colors.dart';
-import 'package:alhayaa_news_app/shared/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CategoryListItem extends StatefulWidget {
@@ -22,11 +21,14 @@ class _CategoryListItemState extends State<CategoryListItem> {
         isSelected = !isSelected;
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
-        margin: const EdgeInsets.symmetric(vertical: 7, horizontal: 7),
+        padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 12),
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
         decoration: BoxDecoration(
           border: Border.all(
-            color: isSelected ? AppColors.primary : Colors.black,
+            color: isSelected
+                ? AppColors.primary
+                : Theme.of(context).textTheme.headlineSmall!.color ??
+                    AppColors.white,
           ),
           borderRadius: BorderRadius.circular(20),
           color: isSelected ? AppColors.primary : Colors.transparent,
@@ -34,8 +36,11 @@ class _CategoryListItemState extends State<CategoryListItem> {
         child: Text(
           widget.name,
           style: isSelected
-              ? AppTextStyles.newsCategory.copyWith(color: AppColors.white)
-              : AppTextStyles.newsCategory,
+              ? Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(color: AppColors.white)
+              : Theme.of(context).textTheme.headlineSmall,
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:alhayaa_news_app/shared/constants/app_colors.dart';
+import 'package:alhayaa_news_app/shared/cubits/home_cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 
 class AppIconContainer extends StatelessWidget {
@@ -29,6 +30,7 @@ class AppIconContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = HomeCubit.get(context).isDark;
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -36,10 +38,15 @@ class AppIconContainer extends StatelessWidget {
         margin: margin,
         child: CircleAvatar(
           radius: 16,
-          backgroundColor: backgroundColor,
+          backgroundColor: isDark ? AppColors.darkCardColor : AppColors.white,
           child: Icon(
             activated ? activatedIcon : icon,
-            color: activated ? activatedIconColor : iconColor,
+            color: activated
+                ? activatedIconColor
+                : isDark
+                    ? AppColors.white
+                    : AppColors.black,
+            // color: activated ? activatedIconColor : iconColor,
             size: iconSize,
           ),
         ),

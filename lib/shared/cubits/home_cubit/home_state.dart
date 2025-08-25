@@ -2,6 +2,7 @@ abstract class HomeState {}
 
 class HomeInitialState extends HomeState {}
 
+/// HomePage
 class HomeLoadingState extends HomeState {}
 
 class HomeSuccessState extends HomeState {}
@@ -11,8 +12,8 @@ class HomeFailureState extends HomeState {
   HomeFailureState(this.error);
 }
 
+/// Navigation
 class NavigationChangedState extends HomeState {}
 
-// class HomeChangeThemeAppState extends HomeStates {}
-
-// class ChangeSelectedIndexState extends HomeStates {}
+/// Theme Mode
+class ChangeThemeAppState extends HomeState {}

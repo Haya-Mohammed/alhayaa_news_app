@@ -31,7 +31,7 @@ class NewsCubit extends Cubit<NewsState> {
       );
       final List<dynamic> data = response.data['articles'];
       articles = data.map((json) => Article.fromJson(json)).toList();
-
+      //  Todo: CacheHelper.saveData(key: '', value: '');
       emit(NewsSuccess(articles));
     } catch (error) {
       emit(NewsFailure(error.toString()));

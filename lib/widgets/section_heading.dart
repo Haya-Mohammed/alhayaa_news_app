@@ -1,14 +1,15 @@
 import 'package:alhayaa_news_app/shared/constants/app_colors.dart';
-import 'package:alhayaa_news_app/shared/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class SectionHeading extends StatelessWidget {
   final String sectionTitle;
   final String sectionTail;
+  final void Function()? action;
   const SectionHeading({
     super.key,
     required this.sectionTitle,
     this.sectionTail = 'Show More',
+    this.action,
   });
 
   @override
@@ -18,14 +19,17 @@ class SectionHeading extends StatelessWidget {
         Expanded(
           child: Text(
             sectionTitle,
-            style: AppTextStyles.pageTitle,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: action,
           child: Text(
             sectionTail,
-            style: AppTextStyles.newsInfo.copyWith(color: AppColors.primary),
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge!
+                .copyWith(color: AppColors.primary),
           ),
         ),
       ],

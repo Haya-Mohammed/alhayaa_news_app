@@ -2,7 +2,6 @@ import 'package:alhayaa_news_app/article_model.dart';
 import 'package:alhayaa_news_app/widgets/common/icon_container.dart';
 import 'package:alhayaa_news_app/widgets/news_lists/news_List_view.dart';
 import 'package:alhayaa_news_app/widgets/news_lists/news_grid_view.dart';
-import 'package:alhayaa_news_app/widgets/section_heading.dart';
 import 'package:flutter/cupertino.dart';
 
 class NewsListSection extends StatefulWidget {
@@ -20,7 +19,6 @@ class _NewsListSectionState extends State<NewsListSection> {
     return Column(
       children: [
         /// view mode
-        const SectionHeading(sectionTitle: 'News For You'),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -37,7 +35,7 @@ class _NewsListSectionState extends State<NewsListSection> {
             ),
           ],
         ),
-        const SizedBox(width: 10),
+        const SizedBox(height: 10),
 
         /// News List
         _isGridView

@@ -1,8 +1,6 @@
 import 'package:alhayaa_news_app/article_model.dart';
-import 'package:alhayaa_news_app/shared/constants/app_colors.dart';
 import 'package:alhayaa_news_app/shared/constants/app_strings.dart';
 import 'package:alhayaa_news_app/shared/constants/image_strings.dart';
-import 'package:alhayaa_news_app/shared/theme/app_text_styles.dart';
 import 'package:alhayaa_news_app/widgets/common/icon_container.dart';
 import 'package:alhayaa_news_app/widgets/common/image_container.dart';
 import 'package:flutter/material.dart';
@@ -17,20 +15,22 @@ class NewsDetailesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           AppStrings.detailsPageTitle,
-          style: AppTextStyles.pageTitle,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
-        backgroundColor: AppColors.background,
-        centerTitle: true,
         leading: AppIconContainer(
           icon: Icons.arrow_back_ios,
           onTap: () => Navigator.pop(context),
+          padding: EdgeInsets.zero,
+          margin: EdgeInsets.zero,
+          iconSize: 16,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         actions: [
           AppIconContainer(
             icon: Icons.bookmark_border,
-            margin: const EdgeInsets.only(left: 8),
+            margin: const EdgeInsets.only(left: 10),
             onTap: () {},
           ),
           const SizedBox(width: 5),
@@ -45,17 +45,20 @@ class NewsDetailesScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               /// Image
-              ImageContainer(
-                image: article.urlToImage ?? AppImages.placeholderImage,
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.25,
+              Hero(
+                tag: '${article.urlToImage}',
+                child: ImageContainer(
+                  image: article.urlToImage ?? AppImages.placeholderImage,
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.25,
+                ),
               ),
               const SizedBox(height: 10),
 
               /// Author
               Text(
                 'By: ${article.author}',
-                style: AppTextStyles.newsInfo,
+                style: Theme.of(context).textTheme.labelLarge,
               ),
               const SizedBox(height: 5),
 
@@ -63,23 +66,23 @@ class NewsDetailesScreen extends StatelessWidget {
               Text(
                 article.title ?? 'No title',
                 textAlign: TextAlign.left,
-                style: AppTextStyles.newsTitle,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
               const SizedBox(height: 5),
 
               /// Short description
               Text(
                 article.description ?? '',
-                style: AppTextStyles.newsDesc,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 10),
 
               /// Article url
               Row(
                 children: [
-                  const Text(
+                  Text(
                     'For more info tap ',
-                    style: AppTextStyles.newsInfo,
+                    style: Theme.of(context).textTheme.labelLarge,
                   ),
                   GestureDetector(
                     onTap: () async {
@@ -101,7 +104,9 @@ class NewsDetailesScreen extends StatelessWidget {
                     },
                     child: Text(
                       'here',
-                      style: AppTextStyles.newsInfo
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge!
                           .copyWith(color: Colors.blueAccent),
                     ),
                   ),
@@ -112,7 +117,7 @@ class NewsDetailesScreen extends StatelessWidget {
                 DateFormat('MM/dd/yyyy, hh:mm a')
                     .format(article.publishedAt!)
                     .toString(),
-                style: AppTextStyles.newsDate,
+                style: Theme.of(context).textTheme.labelSmall,
                 maxLines: 2,
                 textAlign: TextAlign.left,
                 overflow: TextOverflow.ellipsis,

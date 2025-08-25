@@ -1,11 +1,12 @@
 import 'package:alhayaa_news_app/article_model.dart';
+import 'package:alhayaa_news_app/screens/all_news_screen.dart';
 import 'package:alhayaa_news_app/shared/constants/app_colors.dart';
 import 'package:alhayaa_news_app/shared/constants/image_strings.dart';
 import 'package:alhayaa_news_app/shared/cubits/news_cubit/news_cubit.dart';
 import 'package:alhayaa_news_app/widgets/NewsListSection.dart';
+import 'package:alhayaa_news_app/widgets/app_carousel_widget.dart';
 import 'package:alhayaa_news_app/widgets/categories_list.dart';
 import 'package:alhayaa_news_app/widgets/common/icon_container.dart';
-import 'package:alhayaa_news_app/widgets/common/image_container.dart';
 import 'package:alhayaa_news_app/widgets/section_heading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,25 +18,17 @@ class FeedsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
       appBar: AppBar(
         leading: const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Image(
-            image: AssetImage(AppImages.logo),
-          ),
+          child: Image(image: AssetImage(AppImages.logo)),
         ),
         actions: [
           AppIconContainer(
             icon: CupertinoIcons.search,
             onTap: () {},
           ),
-          const SizedBox(width: 5),
-          AppIconContainer(
-            icon: CupertinoIcons.bell,
-            onTap: () {},
-          ),
-          const SizedBox(width: 5),
+          const SizedBox(width: 10),
         ],
       ),
       body: BlocBuilder<NewsCubit, NewsState>(
@@ -52,7 +45,7 @@ class FeedsScreen extends StatelessWidget {
           }
 
           if (articles.isEmpty) {
-            return const Center(child: Text("No articles available"));
+            return const Center(child: Text("No Internet Connection!"));
           }
 
           return RefreshIndicator(
@@ -68,17 +61,23 @@ class FeedsScreen extends StatelessWidget {
                     /// Section Heading
                     const SectionHeading(sectionTitle: 'Breaking News'),
 
-                    /// Image
-                    ImageContainer(
-                      image: articles[0].urlToImage ?? articles[1].urlToImage,
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 0.15,
-                    ),
+                    /// Image Slider
+                    AppCarousel(articles: articles),
+
                     const SizedBox(height: 10),
 
                     /// Categories Tabs
                     const CategoriesList(),
                     const SizedBox(height: 10),
+
+                    /// Section Heading
+                    SectionHeading(
+                      sectionTitle: 'News For You',
+                      action: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (_) => const AllNewsScreen()),
+                      ),
+                    ),
 
                     /// News Section
                     NewsListSection(

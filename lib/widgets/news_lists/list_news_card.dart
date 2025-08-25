@@ -1,6 +1,5 @@
 import 'package:alhayaa_news_app/article_model.dart';
 import 'package:alhayaa_news_app/screens/news_details_screen.dart';
-import 'package:alhayaa_news_app/shared/constants/app_colors.dart';
 import 'package:alhayaa_news_app/widgets/common/image_container.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -24,7 +23,7 @@ class ListNewsCard extends StatelessWidget {
         );
       },
       child: Card(
-        color: AppColors.background,
+        color: Theme.of(context).cardColor,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -38,15 +37,18 @@ class ListNewsCard extends StatelessWidget {
               /// Image
               Expanded(
                 flex: 3,
-                child: ImageContainer(
-                  image: article.urlToImage,
-                  width: MediaQuery.of(context).size.width * 0.1,
-                  height: MediaQuery.of(context).size.width * 0.28,
+                child: Hero(
+                  tag: '${article.urlToImage}',
+                  child: ImageContainer(
+                    image: article.urlToImage,
+                    width: MediaQuery.of(context).size.width * 0.1,
+                    height: MediaQuery.of(context).size.width * 0.28,
+                  ),
                 ),
               ),
               const SizedBox(width: 10),
 
-              /// Info
+              /// Details
               Expanded(
                 flex: 5,
                 child: Column(
@@ -61,10 +63,10 @@ class ListNewsCard extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
 
@@ -75,20 +77,16 @@ class ListNewsCard extends StatelessWidget {
                         article.description ?? '',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.black87,
-                        ),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(6.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
                       child: Text(
                         DateFormat('MM/dd/yyyy, hh:mm a')
                             .format(article.publishedAt!)
                             .toString(),
-                        style: const TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.labelSmall,
                         maxLines: 2,
                         textAlign: TextAlign.left,
                         overflow: TextOverflow.ellipsis,
