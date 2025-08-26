@@ -17,3 +17,10 @@ class NavigationChangedState extends HomeState {}
 
 /// Theme Mode
 class ChangeThemeAppState extends HomeState {}
+
+/// Saved Articles
+class ArticleSavedState extends HomeState {}
+
+class ArticleRemovedState extends HomeState {}
+
+class SavedArticlesLoadedState extends HomeState {}

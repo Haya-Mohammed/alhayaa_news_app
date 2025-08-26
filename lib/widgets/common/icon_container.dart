@@ -7,9 +7,7 @@ class AppIconContainer extends StatelessWidget {
   final Color backgroundColor;
   final IconData icon;
   final IconData activatedIcon;
-  final Color iconColor;
-  final Color activatedIconColor;
-  final bool activated;
+  final Color? iconColor;
   final double iconSize;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
@@ -17,12 +15,10 @@ class AppIconContainer extends StatelessWidget {
   AppIconContainer({
     super.key,
     this.backgroundColor = Colors.white,
-    this.activated = false,
     this.onTap,
     required this.icon,
     this.activatedIcon = Icons.done,
-    this.iconColor = AppColors.black,
-    this.activatedIconColor = AppColors.primary,
+    this.iconColor,
     this.iconSize = 20.0,
     this.padding = EdgeInsets.zero,
     this.margin = EdgeInsets.zero,
@@ -40,12 +36,8 @@ class AppIconContainer extends StatelessWidget {
           radius: 16,
           backgroundColor: isDark ? AppColors.darkCardColor : AppColors.white,
           child: Icon(
-            activated ? activatedIcon : icon,
-            color: activated
-                ? activatedIconColor
-                : isDark
-                    ? AppColors.white
-                    : AppColors.black,
+            icon,
+            color: iconColor ?? (isDark ? AppColors.white : AppColors.black),
             // color: activated ? activatedIconColor : iconColor,
             size: iconSize,
           ),

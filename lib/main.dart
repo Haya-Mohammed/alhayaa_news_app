@@ -1,52 +1,33 @@
+import 'package:alhayaa_news_app/app.dart';
 import 'package:alhayaa_news_app/bloc_observer.dart';
-import 'package:alhayaa_news_app/home_page.dart';
 import 'package:alhayaa_news_app/network/local/cache_helper.dart';
 import 'package:alhayaa_news_app/network/remote/dio_helper.dart';
-import 'package:alhayaa_news_app/shared/constants/app_strings.dart';
-import 'package:alhayaa_news_app/shared/cubits/home_cubit/home_cubit.dart';
-import 'package:alhayaa_news_app/shared/cubits/home_cubit/home_state.dart';
-import 'package:alhayaa_news_app/shared/cubits/news_cubit/news_cubit.dart';
-import 'package:alhayaa_news_app/shared/theme/app_theme.dart';
+import 'package:alhayaa_news_app/shared/constants/constants.dart';
+import 'package:alhayaa_news_app/shared/models/article_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: binding);
+
+  /// Local init
+  await Hive.initFlutter();
+  Hive.registerAdapter(SourceAdapter());
+  Hive.registerAdapter(ArticleAdapter());
+  await Hive.openBox<Article>(AppConstants.kSavedArticles);
   await CacheHelper.init();
+
+  /// Remote init
   DioHelper.init();
+
+  /// state management
   Bloc.observer = MyBlocObserver();
+
+  /// init
   final bool? isDark = CacheHelper.getData(key: 'isDark');
   runApp(MyApp(isDark: isDark));
   FlutterNativeSplash.remove();
-}
-
-class MyApp extends StatelessWidget {
-  final bool? isDark;
-
-  const MyApp({super.key, required this.isDark});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => HomeCubit(isDark)),
-        BlocProvider(create: (context) => NewsCubit()..getNews()),
-      ],
-      child: BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          final cubit = HomeCubit.get(context);
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: AppStrings.appName,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: cubit.isDark ? ThemeMode.dark : ThemeMode.light,
-            home: const HomePage(),
-          );
-        },
-      ),
-    );
-  }
 }

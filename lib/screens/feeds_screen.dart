@@ -1,8 +1,8 @@
-import 'package:alhayaa_news_app/article_model.dart';
 import 'package:alhayaa_news_app/screens/all_news_screen.dart';
 import 'package:alhayaa_news_app/shared/constants/app_colors.dart';
 import 'package:alhayaa_news_app/shared/constants/image_strings.dart';
 import 'package:alhayaa_news_app/shared/cubits/news_cubit/news_cubit.dart';
+import 'package:alhayaa_news_app/shared/models/article_model.dart';
 import 'package:alhayaa_news_app/widgets/NewsListSection.dart';
 import 'package:alhayaa_news_app/widgets/app_carousel_widget.dart';
 import 'package:alhayaa_news_app/widgets/categories_list.dart';

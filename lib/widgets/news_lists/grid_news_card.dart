@@ -1,5 +1,5 @@
-import 'package:alhayaa_news_app/article_model.dart';
 import 'package:alhayaa_news_app/screens/news_details_screen.dart';
+import 'package:alhayaa_news_app/shared/models/article_model.dart';
 import 'package:alhayaa_news_app/widgets/common/image_container.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

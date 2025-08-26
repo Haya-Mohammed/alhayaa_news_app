@@ -1,5 +1,5 @@
 import 'package:alhayaa_news_app/network/remote/end_points.dart';
-import 'package:alhayaa_news_app/shared/constants/app_strings.dart';
+import 'package:alhayaa_news_app/shared/constants/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -28,7 +28,7 @@ class DioHelper {
         queryParameters: query,
         options: Options(
           headers: {
-            'Authorization': 'Bearer ${AppStrings.NEWS_API_KEY}',
+            'Authorization': 'Bearer ${AppConstants.NEWS_API_KEY}',
           },
         ),
       );

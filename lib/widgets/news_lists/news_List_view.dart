@@ -1,4 +1,4 @@
-import 'package:alhayaa_news_app/article_model.dart';
+import 'package:alhayaa_news_app/shared/models/article_model.dart';
 import 'package:alhayaa_news_app/widgets/news_lists/list_news_card.dart';
 import 'package:flutter/material.dart';
 

@@ -1,8 +1,9 @@
-import 'package:alhayaa_news_app/article_model.dart';
 import 'package:alhayaa_news_app/shared/constants/app_strings.dart';
 import 'package:alhayaa_news_app/shared/constants/image_strings.dart';
+import 'package:alhayaa_news_app/shared/models/article_model.dart';
 import 'package:alhayaa_news_app/widgets/common/icon_container.dart';
 import 'package:alhayaa_news_app/widgets/common/image_container.dart';
+import 'package:alhayaa_news_app/widgets/save_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,11 +29,7 @@ class NewsDetailesScreen extends StatelessWidget {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         actions: [
-          AppIconContainer(
-            icon: Icons.bookmark_border,
-            margin: const EdgeInsets.only(left: 10),
-            onTap: () {},
-          ),
+          SaveButton(article: article),
           const SizedBox(width: 5),
         ],
       ),

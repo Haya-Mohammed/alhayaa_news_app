@@ -1,7 +1,7 @@
-import 'package:alhayaa_news_app/article_model.dart';
 import 'package:alhayaa_news_app/network/remote/dio_helper.dart';
 import 'package:alhayaa_news_app/network/remote/end_points.dart';
-import 'package:alhayaa_news_app/shared/constants/app_strings.dart';
+import 'package:alhayaa_news_app/shared/constants/constants.dart';
+import 'package:alhayaa_news_app/shared/models/article_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -26,7 +26,7 @@ class NewsCubit extends Cubit<NewsState> {
         endPoint: EndPoints.topHeadlines,
         query: {
           'country': 'us',
-          'apiKey': AppStrings.NEWS_API_KEY,
+          'apiKey': AppConstants.NEWS_API_KEY,
         },
       );
       final List<dynamic> data = response.data['articles'];

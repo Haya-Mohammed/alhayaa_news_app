@@ -5,7 +5,6 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("Rebuild ExploreScreen");
     return const Center(
       child: Text('This is Explore Screen'),
     );
