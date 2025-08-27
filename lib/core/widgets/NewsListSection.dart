@@ -1,0 +1,49 @@
+import 'package:alhayaa_news_app/core/widgets/icon_container.dart';
+import 'package:alhayaa_news_app/core/widgets/news_lists/news_List_view.dart';
+import 'package:alhayaa_news_app/core/widgets/news_lists/news_grid_view.dart';
+import 'package:alhayaa_news_app/models/article_model.dart';
+import 'package:flutter/cupertino.dart';
+
+class NewsListSection extends StatefulWidget {
+  final List<Article> articles;
+
+  const NewsListSection({super.key, required this.articles});
+
+  @override
+  State<NewsListSection> createState() => _NewsListSectionState();
+}
+
+class _NewsListSectionState extends State<NewsListSection> {
+  bool _isGridView = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        /// view mode
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            const SizedBox(width: 10),
+            AppIconContainer(
+              icon: _isGridView
+                  ? CupertinoIcons.list_bullet
+                  : CupertinoIcons.square_grid_2x2,
+              onTap: () {
+                setState(() {
+                  _isGridView = !_isGridView; // Toggle the view mode
+                });
+              },
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+
+        /// News List
+        _isGridView
+            ? NewsGridView(articles: widget.articles)
+            : NewsListView(articles: widget.articles),
+      ],
+    );
+  }
+}
