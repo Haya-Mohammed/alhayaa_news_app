@@ -5,35 +5,41 @@ class SectionHeading extends StatelessWidget {
   final String sectionTitle;
   final String sectionTail;
   final void Function()? action;
+  final bool showTail;
 
   const SectionHeading({
     super.key,
     required this.sectionTitle,
     this.sectionTail = 'Show More',
     this.action,
+    this.showTail = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            sectionTitle,
-            style: Theme.of(context).textTheme.titleLarge,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              sectionTitle,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
           ),
-        ),
-        TextButton(
-          onPressed: action,
-          child: Text(
-            sectionTail,
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge!
-                .copyWith(color: AppColors.primary),
-          ),
-        ),
-      ],
+          if (showTail)
+            TextButton(
+              onPressed: action,
+              child: Text(
+                sectionTail,
+                style: Theme.of(context)
+                    .textTheme
+                    .labelLarge!
+                    .copyWith(color: AppColors.primary),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

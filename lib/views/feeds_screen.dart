@@ -19,6 +19,7 @@ class FeedsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: const Padding(
           padding: EdgeInsets.all(8.0),
           child: Image(image: AssetImage(AppImages.logo)),
@@ -59,7 +60,8 @@ class FeedsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     /// Section Heading
-                    const SectionHeading(sectionTitle: 'Breaking News'),
+                    const SectionHeading(
+                        sectionTitle: 'Breaking News', showTail: false),
 
                     /// Image Slider
                     AppCarousel(articles: articles),

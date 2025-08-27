@@ -38,12 +38,35 @@ class NewsCubit extends Cubit<NewsState> {
     }
   }
 
-  List<String> categories = [];
-  int selectedCategory = 0;
-// Todo
-//   void changeCategory(int index) {
-//     selectedCategory = index;
-//     emit(CategoryChanged());
-//     getNewsByCategory(categories[index]);
-//   }
+  void getNewsByCategory(String? category) async {
+    emit(NewsLoading());
+    try {
+      final response = await DioHelper.getData(
+        endPoint: EndPoints.everything,
+        query: {
+          'q': category,
+          'apiKey': AppConstants.NEWS_API_KEY,
+        },
+      );
+      final List<dynamic> data = response.data['articles'];
+      articles = data.map((json) => Article.fromJson(json)).toList();
+      //  Todo: CacheHelper.saveData(key: '', value: '');
+      emit(NewsSuccess(articles));
+    } catch (error) {
+      emit(NewsFailure(error.toString()));
+    }
+  }
+
+  int selectedCategoryIndex = 0;
+
+  void changeCategory(int index, String category) {
+    selectedCategoryIndex = index;
+    emit(NewsCategoryChanged());
+
+    if (category == 'All') {
+      getNews();
+    } else {
+      getNewsByCategory(category);
+    }
+  }
 }

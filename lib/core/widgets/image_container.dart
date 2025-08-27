@@ -16,6 +16,11 @@ class ImageContainer extends StatelessWidget {
     this.borderRadius = 20.0,
   });
 
+  String cleanImageUrl(String? url) {
+    if (url == null) return '';
+    return url.split('?').first;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,17 +30,23 @@ class ImageContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: CachedNetworkImage(
-        imageUrl: image ?? AppImages.placeholderImage,
-        placeholder: (context, url) => const Image(
-          image: AssetImage(AppImages.placeholderImage),
-        ),
-        errorWidget: (context, url, error) => const Image(
-          image: AssetImage(AppImages.placeholderImage),
-          fit: BoxFit.cover,
-        ),
-        fit: BoxFit.cover,
-      ),
+      child: (image == null || image!.isEmpty)
+          ? const Image(
+              image: AssetImage(AppImages.placeholderImage),
+              fit: BoxFit.cover,
+            )
+          : CachedNetworkImage(
+              imageUrl: cleanImageUrl(image),
+              placeholder: (context, url) => const Image(
+                image: AssetImage(AppImages.placeholderImage),
+                fit: BoxFit.cover,
+              ),
+              errorWidget: (context, url, error) => const Image(
+                image: AssetImage(AppImages.placeholderImage),
+                fit: BoxFit.cover,
+              ),
+              fit: BoxFit.cover,
+            ),
     );
   }
 }

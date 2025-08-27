@@ -1,30 +1,25 @@
 import 'package:alhayaa_news_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CategoryListItem extends StatefulWidget {
+class CategoryListItem extends StatelessWidget {
   final String name;
+  final bool isSelected;
+  final VoidCallback onTap;
 
   const CategoryListItem({
     super.key,
     required this.name,
+    required this.isSelected,
+    required this.onTap,
   });
-
-  @override
-  State<CategoryListItem> createState() => _CategoryListItemState();
-}
-
-class _CategoryListItemState extends State<CategoryListItem> {
-  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        isSelected = !isSelected;
-      },
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 12),
-        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+        margin: const EdgeInsets.only(left: 5),
         decoration: BoxDecoration(
           border: Border.all(
             color: isSelected
@@ -35,14 +30,16 @@ class _CategoryListItemState extends State<CategoryListItem> {
           borderRadius: BorderRadius.circular(20),
           color: isSelected ? AppColors.primary : Colors.transparent,
         ),
-        child: Text(
-          widget.name,
-          style: isSelected
-              ? Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .copyWith(color: AppColors.white)
-              : Theme.of(context).textTheme.headlineSmall,
+        child: Center(
+          child: Text(
+            name,
+            style: isSelected
+                ? Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(color: AppColors.white)
+                : Theme.of(context).textTheme.headlineSmall,
+          ),
         ),
       ),
     );
