@@ -12,7 +12,7 @@ class SectionHeading extends StatelessWidget {
     required this.sectionTitle,
     this.sectionTail = 'Show More',
     this.action,
-    this.showTail = true,
+    this.showTail = false,
   });
 
   @override

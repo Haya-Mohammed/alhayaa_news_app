@@ -60,8 +60,7 @@ class FeedsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     /// Section Heading
-                    const SectionHeading(
-                        sectionTitle: 'Breaking News', showTail: false),
+                    const SectionHeading(sectionTitle: 'Breaking News'),
 
                     /// Image Slider
                     AppCarousel(articles: articles),
@@ -75,6 +74,7 @@ class FeedsScreen extends StatelessWidget {
                     /// Section Heading
                     SectionHeading(
                       sectionTitle: 'News For You',
+                      showTail: true,
                       action: () => Navigator.of(context).push(
                         MaterialPageRoute(
                             builder: (_) => const AllNewsScreen()),
