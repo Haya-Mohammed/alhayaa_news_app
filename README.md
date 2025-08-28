@@ -6,6 +6,7 @@ A News app
 - Splash Screen (with flutter_native_splash)
 - RESTful API (newsapi.com)
 - BLoC (with Cubit)
+- MVVM Pattern
 - Chache images (with cached_network_image)
 - Dark Theme (with Shared Preference)
 - Hive (For storing articles locally)
